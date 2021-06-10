@@ -8,7 +8,7 @@ ococolos/ococolos is a ✨ special ✨ repository because its `README.md` (this 
 You can click the Preview link to take a look at your changes.
 --->
 # Details on the private repositories:
-All applications made for internal purposes are deployed on Windows IIS. 
+All applications created for internal purposes are made with Python 3.6 and deployed on Windows IIS. 
 
 # DJANGO APPS
 ## **PCL_APPS**
@@ -97,9 +97,56 @@ All applications made for internal purposes are deployed on Windows IIS.
  * django-crispy-forms 1.10.0
  * django-environ 0.4.5
  * django-mssql-backend 2.8.1
+
+
+ ## **FINANCE_APPS**
+ Central hub for all applications designed for the finance department; each requested application is designed as a separate Django app. 
  
+ ### Sub-applications
+ ### Intrastat
+ #### General info
+ Takes an excel file as an input and outputs an XML. The XML is built according to Intrastat specifications, a platform of the Romanian government in which companies upload financial data for importing and exporting goods. The persons responsible with the financial data for the report have been granted read/write access. Authentication is done with company Windows credentials, through the Active Directory. 
+   
+ #### Technologies used
+ * django 3.0.10
+ * pandas 1.1.5
+ * lxml 4.6.3
+ * django-auth-ldap 2.3.0
+ * python-ldap 3.3.1
+ * django-crispy-forms 1.10.0
+ * django-environ 0.4.5
+ * django-mssql-backend 2.8.1
  
  # FLASK APPS
  
  ## Quality wall
-  First application built for Eberspaecher. It allows for the quality department to monitor finished goods inspected at the Quality Wall - an inspection point separated from the production line, intended as a last line of defence for potential defects escaping to the customer. Application has its own user database with User and Admin roles. Good and Defective parts are scanned, with data logged for each particular user, making traceability possible in case of 
+ 
+ #### General info
+  First application built for Eberspaecher. It allows for the quality department to monitor finished goods inspected at the Quality Wall - an inspection point separated from the production line, intended as a last line of defence for potential defects escaping to the customer. Application has its own user database with User and Admin roles. Good and Defective parts are scanned, with data logged for each particular user, making traceability possible in case of escapes. The application is checking whether the parts scanned belong to the same finished good part number and will signal if a part is from another type. This is achieved through a secondary communication with the IBM DB2 Database of MWA (internal traceability system), where it is checking the part number of that particular serial number. 
+  Reports can be run to see defect breakdown by customer, by defect type. Reports for production can be run for each customer, outputting each part number and the number of parts inspected, along with user data for those parts. 
+
+  #### Technologies used
+ * flask 1.1.2
+ * flask-bcrypt 0.7.1
+ * flask-login 0.5.0
+ * flask-sqlalchemy 2.4.3
+ * flask-wtf 0.14.3
+ * pyodbc 4.0.30
+ * ibm-db 3.0.2
+ * waitress 1.4.4
+
+  ## Events manager
+ 
+ #### General info
+  Application created for the HR department for managing events such as Christmas gifts, Women's day, etc. HR can create an event, uploads a custom picture and inputs a custom message. When the event takes place, the operators and other personnel benefitting from the event will scan their badge and will be logged in a database to keep track of beneficiaries and to prevent the same person from multiple scans for the same event.
+  
+ #### Technologies used
+ * flask 1.1.2
+ * flask-bcrypt 0.7.1
+ * flask-login 0.5.0
+ * flask-sqlalchemy 2.4.3
+ * flask-wtf 0.14.3
+ * pyodbc 4.0.30
+ * ibm-db 3.0.2
+ * waitress 1.4.4
+ * pillow 7.1.2
