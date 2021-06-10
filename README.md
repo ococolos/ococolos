@@ -142,11 +142,7 @@ All applications created for internal purposes are made with Python 3.6 and depl
   
  #### Technologies used
  * flask 1.1.2
- * flask-bcrypt 0.7.1
- * flask-login 0.5.0
  * flask-sqlalchemy 2.4.3
  * flask-wtf 0.14.3
  * pyodbc 4.0.30
- * ibm-db 3.0.2
- * waitress 1.4.4
  * pillow 7.1.2
